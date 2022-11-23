@@ -20,17 +20,22 @@ public class Customer {
 		this.name = name;
 	}
 
-	public List<Rental> getRentals() {
+	public final List<Rental> getRentals() {
 		return rentals;
-	}
-
-	public void setRentals(List<Rental> rentals) {
-		this.rentals = rentals;
 	}
 
 	public void addRental(Rental rental) {
 		rentals.add(rental);
 	}
+
+	public void resetRental() {
+		rentals.clear();
+	}
+
+	public void delRental(Rental rental) {
+		rentals.remove(rental);
+	}
+
 
 	public String getReport() {
 		String result = "data.Customer Report for " + getName() + "\n";
@@ -49,7 +54,6 @@ public class Customer {
 		}
 
 		result += "Total charge: " + totalCharge + "\tTotal Point:" + totalPoint + "\n";
-
 
 		if ( totalPoint >= 10 ) {
 			System.out.println("Congrat! You earned one free coupon");

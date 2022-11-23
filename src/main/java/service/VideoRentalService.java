@@ -32,9 +32,7 @@ public class VideoRentalService {
                 System.out.print("\tTitle: " + rental.getVideo().getTitle() + " ");
                 System.out.print("\tPrice Code: " + rental.getVideo().getPriceCode());
             }
-
-            List<Rental> rentals = new ArrayList<Rental>();
-            foundCustomer.setRentals(rentals);
+            foundCustomer.resetRental();
         }
     }
 
@@ -139,10 +137,7 @@ public class VideoRentalService {
 
         Rental rental = new Rental(foundVideo);
         foundVideo.setRented(true);
-
-        List<Rental> customerRentals = foundCustomer.getRentals();
-        customerRentals.add(rental);
-        foundCustomer.setRentals(customerRentals);
+        foundCustomer.addRental(rental);
     }
 
     public void registerCustomer(List<Customer> customers) {
@@ -173,8 +168,7 @@ public class VideoRentalService {
         logger.info("\t 6. Return video");
         logger.info("\t 7. Show customer report");
         logger.info("\t 8. Show customer and clear rentals");
-        int command = scannerService.receiveInteger();
-        return command;
+        return scannerService.receiveInteger();
 
     }
 }
