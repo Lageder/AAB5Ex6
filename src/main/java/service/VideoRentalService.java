@@ -151,22 +151,14 @@ public class VideoRentalService {
         foundCustomer.setRentals(customerRentals);
     }
 
-    public void register(String object, List<Customer> customers, List<Video> videos) {
-        if (object.equals("customer")) {
-            registerCustomer(customers);
-        } else {
-            registerVideo(videos);
-        }
-    }
-
-    private void registerCustomer(List<Customer> customers) {
+    public void registerCustomer(List<Customer> customers) {
         logger.info("Enter customer name: ");
         String name = scanner.next();
         Customer customer = new Customer(name);
         customers.add(customer);
     }
 
-    private void registerVideo(List<Video> videos) {
+    public void registerVideo(List<Video> videos) {
         logger.info("Enter video title to register: ");
         String title = scanner.next();
 

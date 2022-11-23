@@ -10,7 +10,6 @@ import java.util.Scanner;
 
 // This is Presentation layer..kind of??
 public class VRUI {
-	private static Scanner scanner = new Scanner(System.in) ;
 	private final VideoRentalService videoRentalService = new VideoRentalService();
 
 	private List<Customer> customers = new ArrayList<Customer>() ;
@@ -18,8 +17,7 @@ public class VRUI {
 	private List<Video> videos = new ArrayList<Video>() ;
 
 	public static void main(String[] args) {
-		VRUI ui = new VRUI() ;
-
+		VRUI ui = new VRUI();
 		boolean quit = false ;
 		while ( ! quit ) {
 			int command = ui.showCommand() ;
@@ -27,8 +25,8 @@ public class VRUI {
 				case 0: quit = true ; break ;
 				case 1: ui.listCustomers() ; break ;
 				case 2: ui.listVideos() ; break ;
-				case 3: ui.register("customer") ; break ;
-				case 4: ui.register("video") ; break ;
+				case 3: ui.registerCustomer() ; break ;
+				case 4: ui.registerVideo() ; break ;
 				case 5: ui.rentVideo() ; break ;
 				case 6: ui.returnVideo() ; break ;
 				case 7: ui.getCustomerReport() ; break;
@@ -68,8 +66,12 @@ public class VRUI {
 		videoRentalService.rentVideo(customers, videos);
 	}
 
-	public void register(String object) {
-		videoRentalService.register(object, customers, videos);
+	private void registerVideo() {
+		videoRentalService.registerVideo(videos);
+	}
+
+	private void registerCustomer() {
+		videoRentalService.registerCustomer(customers);
 	}
 
 	public int showCommand() {
