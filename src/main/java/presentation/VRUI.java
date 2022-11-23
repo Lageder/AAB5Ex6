@@ -2,19 +2,22 @@ package presentation;
 
 import data.Customer;
 import data.Video;
+import log.Logger;
+import service.CustomerService;
+import service.ScannerService;
 import service.VideoRentalService;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 // This is Presentation layer..kind of??
 public class VRUI {
-	private final VideoRentalService videoRentalService = new VideoRentalService();
+	Logger logger = new Logger();
+	private final ScannerService scannerService = new ScannerService();
+	private final CustomerService customerService = new CustomerService(logger, scannerService);
+	private final VideoRentalService videoRentalService = new VideoRentalService(logger, scannerService);
 	private List<Customer> customers = new ArrayList<Customer>();
 	private List<Video> videos = new ArrayList<Video>();
-
-
 
 	public static void main(String[] args) {
 		VRUI ui = new VRUI();
@@ -55,11 +58,11 @@ public class VRUI {
 	}
 
 	public void listCustomers() {
-		videoRentalService.listCustomers(customers);
+		customerService.listCustomers(customers);
 	}
 
 	public void getCustomerReport() {
-		videoRentalService.getCustomerReport(customers);
+		customerService.getCustomerReport(customers);
 	}
 
 	public void rentVideo() {
@@ -71,7 +74,7 @@ public class VRUI {
 	}
 
 	private void registerCustomer() {
-		videoRentalService.registerCustomer(customers);
+		customerService.registerCustomer(customers);
 	}
 
 	public int showCommand() {
