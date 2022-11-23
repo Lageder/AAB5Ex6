@@ -3,6 +3,7 @@ package service;
 import data.Customer;
 import data.Rental;
 import data.Video;
+import log.Logger;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -10,24 +11,23 @@ import java.util.List;
 import java.util.Scanner;
 
 public class VideoRentalService {
-    private final presentation.VRUI VRUI;
 
     private static Scanner scanner = new Scanner(System.in);
+    private final Logger logger = new Logger();
 
     public VideoRentalService(presentation.VRUI VRUI) {
-        this.VRUI = VRUI;
     }
 
     public void clearRentals(List<Customer> customers) {
-        System.out.println("Enter customer name: ");
+        logger.info("Enter customer name: ");
         String customerName = scanner.next();
 
         Customer foundCustomer = findCustomer(customers, customerName);
 
         if (foundCustomer == null) {
-            System.out.println("No customer found");
+            logger.info("No customer found");
         } else {
-            System.out.println("Name: " + foundCustomer.getName() +
+            logger.info("Name: " + foundCustomer.getName() +
                     "\tRentals: " + foundCustomer.getRentals().size());
             for (Rental rental : foundCustomer.getRentals()) {
                 System.out.print("\tTitle: " + rental.getVideo().getTitle() + " ");
@@ -51,13 +51,13 @@ public class VideoRentalService {
     }
 
     public void returnVideo(List<Customer> customers) {
-        System.out.println("Enter customer name: ");
+        logger.info("Enter customer name: ");
         String customerName = scanner.next();
 
         Customer foundCustomer = findCustomer(customers, customerName);
         if (foundCustomer == null) return;
 
-        System.out.println("Enter video title to return: ");
+        logger.info("Enter video title to return: ");
         String videoTitle = scanner.next();
 
         List<Rental> customerRentals = foundCustomer.getRentals();
@@ -89,50 +89,50 @@ public class VideoRentalService {
     }
 
     public void listVideos(List<Video> videos) {
-        System.out.println("List of videos");
+        logger.info("List of videos");
 
         for (Video video : videos) {
-            System.out.println("Price code: " + video.getPriceCode() + "\tTitle: " + video.getTitle());
+            logger.info("Price code: " + video.getPriceCode() + "\tTitle: " + video.getTitle());
         }
-        System.out.println("End of list");
+        logger.info("End of list");
     }
 
     public void listCustomers(List<Customer> customers) {
-        System.out.println("List of customers");
+        logger.info("List of customers");
         for (Customer customer : customers) {
-            System.out.println("Name: " + customer.getName() +
+            logger.info("Name: " + customer.getName() +
                     "\tRentals: " + customer.getRentals().size());
             for (Rental rental : customer.getRentals()) {
                 System.out.print("\tTitle: " + rental.getVideo().getTitle() + " ");
                 System.out.print("\tPrice Code: " + rental.getVideo().getPriceCode());
             }
         }
-        System.out.println("End of list");
+        logger.info("End of list");
     }
 
     public void getCustomerReport(List<Customer> customers) {
-        System.out.println("Enter customer name: ");
+        logger.info("Enter customer name: ");
         String customerName = scanner.next();
 
         Customer foundCustomer = findCustomer(customers, customerName);
 
         if (foundCustomer == null) {
-            System.out.println("No customer found");
+            logger.info("No customer found");
         } else {
             String result = foundCustomer.getReport();
-            System.out.println(result);
+            logger.info(result);
         }
     }
 
     public void rentVideo(List<Customer> customers, List<Video> videos) {
-        System.out.println("Enter customer name: ");
+        logger.info("Enter customer name: ");
         String customerName = scanner.next();
 
         Customer foundCustomer = findCustomer(customers, customerName);
 
         if (foundCustomer == null) return;
 
-        System.out.println("Enter video title to rent: ");
+        logger.info("Enter video title to rent: ");
         String videoTitle = scanner.next();
 
         Video foundVideo = null;
@@ -162,20 +162,20 @@ public class VideoRentalService {
     }
 
     private void registerCustomer(List<Customer> customers) {
-        System.out.println("Enter customer name: ");
+        logger.info("Enter customer name: ");
         String name = scanner.next();
         Customer customer = new Customer(name);
         customers.add(customer);
     }
 
     private void registerVideo(List<Video> videos) {
-        System.out.println("Enter video title to register: ");
+        logger.info("Enter video title to register: ");
         String title = scanner.next();
 
-        System.out.println("Enter video type( 1 for VHD, 2 for CD, 3 for DVD ):");
+        logger.info("Enter video type( 1 for VHD, 2 for CD, 3 for DVD ):");
         int videoType = scanner.nextInt();
 
-        System.out.println("Enter price code( 1 for Regular, 2 for New Release ):");
+        logger.info("Enter price code( 1 for Regular, 2 for New Release ):");
         int priceCode = scanner.nextInt();
 
         Date registeredDate = new Date();
@@ -184,16 +184,16 @@ public class VideoRentalService {
     }
 
     public int showCommand() {
-        System.out.println("\nSelect a command !");
-        System.out.println("\t 0. Quit");
-        System.out.println("\t 1. List customers");
-        System.out.println("\t 2. List videos");
-        System.out.println("\t 3. Register customer");
-        System.out.println("\t 4. Register video");
-        System.out.println("\t 5. Rent video");
-        System.out.println("\t 6. Return video");
-        System.out.println("\t 7. Show customer report");
-        System.out.println("\t 8. Show customer and clear rentals");
+        logger.info("\nSelect a command !");
+        logger.info("\t 0. Quit");
+        logger.info("\t 1. List customers");
+        logger.info("\t 2. List videos");
+        logger.info("\t 3. Register customer");
+        logger.info("\t 4. Register video");
+        logger.info("\t 5. Rent video");
+        logger.info("\t 6. Return video");
+        logger.info("\t 7. Show customer report");
+        logger.info("\t 8. Show customer and clear rentals");
 
         int command = scanner.nextInt();
 
