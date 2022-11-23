@@ -13,11 +13,6 @@ public class ScannerService {
         logger = new Logger();
     }
 
-    public String receiveCustomerName() {
-        logger.info("Enter customer name: ");
-        return scanner.next();
-    }
-
     public String receiveString(String loggerMsg) {
         logger.info(loggerMsg);
         return scanner.next();

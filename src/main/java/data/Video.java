@@ -2,6 +2,11 @@ package data;
 
 import java.util.Date;
 
+/*
+	todo list
+	- Need different creation strategy for REGULAR and NEW_RELEASE video (Replace Type Code with Subclasses tactic)
+	- Also need different creation strategy for VHS, CD and DVD video (Replace Type Code with Subclasses tactic)
+*/
 public class Video {
 	private String title ;
 
@@ -55,14 +60,6 @@ public class Video {
 
 	public void setRented(boolean rented) {
 		this.rented = rented;
-	}
-
-	public Date getRegisteredDate() {
-		return registeredDate;
-	}
-
-	public void setRegisteredDate(Date registeredDate) {
-		this.registeredDate = registeredDate;
 	}
 
 	public int getVideoType() {

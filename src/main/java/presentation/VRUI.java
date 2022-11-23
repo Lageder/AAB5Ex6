@@ -10,7 +10,11 @@ import service.VideoRentalService;
 import java.util.ArrayList;
 import java.util.List;
 
-// This is Presentation layer..kind of??
+/*
+	todo list
+	- Can we process customers and videos information in another class?
+	- Separate init responsibility
+* */
 public class VRUI {
 	Logger logger = new Logger();
 	private final ScannerService scannerService = new ScannerService();

@@ -32,10 +32,6 @@ public class Customer {
 		rentals.clear();
 	}
 
-	public void delRental(Rental rental) {
-		rentals.remove(rental);
-	}
-
 
 	public String getReport() {
 		String result = "data.Customer Report for " + getName() + "\n";
