@@ -14,6 +14,7 @@ import java.util.List;
 	todo list
 	- Can we process customers and videos information in another class?
 	- Separate init responsibility
+	- Apply command pattern to reduce CC in main method
 * */
 public class VRUI {
 	Logger logger = new Logger();
