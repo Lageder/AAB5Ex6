@@ -1,3 +1,5 @@
+package data;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -33,7 +35,7 @@ public class Customer {
 	}
 
 	public String getReport() {
-		String result = "Customer Report for " + getName() + "\n";
+		String result = "data.Customer Report for " + getName() + "\n";
 
 		List<Rental> rentals = getRentals();
 
@@ -45,7 +47,7 @@ public class Customer {
 			int eachPoint = 0 ;
 			int daysRented = 0;
 
-			if (each.getStatus() == 1) { // returned Video
+			if (each.getStatus() == 1) { // returned data.Video
 				long diff = each.getReturnDate().getTime() - each.getRentDate().getTime();
 				daysRented = (int) (diff / (1000 * 60 * 60 * 24)) + 1;
 			} else { // not yet returned
