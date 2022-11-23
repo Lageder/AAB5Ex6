@@ -15,7 +15,7 @@ public class VideoRentalService {
     private static Scanner scanner = new Scanner(System.in);
     private final Logger logger = new Logger();
 
-    public VideoRentalService(presentation.VRUI VRUI) {
+    public VideoRentalService() {
     }
 
     public void clearRentals(List<Customer> customers) {
@@ -100,11 +100,9 @@ public class VideoRentalService {
     public void listCustomers(List<Customer> customers) {
         logger.info("List of customers");
         for (Customer customer : customers) {
-            logger.info("Name: " + customer.getName() +
-                    "\tRentals: " + customer.getRentals().size());
+            logger.info("Name: " + customer.getName() + "\tRentals: " + customer.getRentals().size());
             for (Rental rental : customer.getRentals()) {
-                System.out.print("\tTitle: " + rental.getVideo().getTitle() + " ");
-                System.out.print("\tPrice Code: " + rental.getVideo().getPriceCode());
+                logger.info("\tTitle: " + rental.getVideo().getTitle() + "\tPrice Code: " + rental.getVideo().getPriceCode());
             }
         }
         logger.info("End of list");

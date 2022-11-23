@@ -11,7 +11,7 @@ import java.util.Scanner;
 // This is Presentation layer..kind of??
 public class VRUI {
 	private static Scanner scanner = new Scanner(System.in) ;
-	private final VideoRentalService videoRentalService = new VideoRentalService(this);
+	private final VideoRentalService videoRentalService = new VideoRentalService();
 
 	private List<Customer> customers = new ArrayList<Customer>() ;
 
