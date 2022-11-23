@@ -1,7 +1,5 @@
 package data;
 
-import data.Video;
-
 import java.util.Date;
 
 public class Rental {
@@ -68,5 +66,20 @@ public class Rental {
 			case Video.DVD: limit = 2 ; break ;
 		}
 		return limit ;
+	}
+
+	public int getDaysRented() {
+		long diff;
+		if (status == 1) { // returned data.Video
+			diff = returnDate.getTime() - rentDate.getTime();
+		} else { // not yet returned
+			Date currentDate = new Date();
+			diff = currentDate.getTime() - rentDate.getTime();
+		}
+		return calculateDaysRented(diff);
+	}
+
+	private int calculateDaysRented(long diff) {
+		return (int) ((diff / (1000 * 60 * 60 * 24)) + 1);
 	}
 }
