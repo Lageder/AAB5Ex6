@@ -168,24 +168,32 @@ public class VideoRentalService {
 
     public void register(String object, List<Customer> customers, List<Video> videos) {
         if (object.equals("customer")) {
-            System.out.println("Enter customer name: ");
-            String name = scanner.next();
-            Customer customer = new Customer(name);
-            customers.add(customer);
+            registerCustomer(customers);
         } else {
-            System.out.println("Enter video title to register: ");
-            String title = scanner.next();
-
-            System.out.println("Enter video type( 1 for VHD, 2 for CD, 3 for DVD ):");
-            int videoType = scanner.nextInt();
-
-            System.out.println("Enter price code( 1 for Regular, 2 for New Release ):");
-            int priceCode = scanner.nextInt();
-
-            Date registeredDate = new Date();
-            Video video = new Video(title, videoType, priceCode, registeredDate);
-            videos.add(video);
+            registerVideo(videos);
         }
+    }
+
+    private void registerCustomer(List<Customer> customers) {
+        System.out.println("Enter customer name: ");
+        String name = scanner.next();
+        Customer customer = new Customer(name);
+        customers.add(customer);
+    }
+
+    private void registerVideo(List<Video> videos) {
+        System.out.println("Enter video title to register: ");
+        String title = scanner.next();
+
+        System.out.println("Enter video type( 1 for VHD, 2 for CD, 3 for DVD ):");
+        int videoType = scanner.nextInt();
+
+        System.out.println("Enter price code( 1 for Regular, 2 for New Release ):");
+        int priceCode = scanner.nextInt();
+
+        Date registeredDate = new Date();
+        Video video = new Video(title, videoType, priceCode, registeredDate);
+        videos.add(video);
     }
 
     public int showCommand() {
