@@ -11,16 +11,15 @@ import java.util.List;
 import java.util.Scanner;
 
 public class VideoRentalService {
-
-    private static Scanner scanner = new Scanner(System.in);
+    
     private final Logger logger = new Logger();
-
+    private final ScannerService scannerService = new ScannerService();
+    
     public VideoRentalService() {
     }
 
     public void clearRentals(List<Customer> customers) {
-        logger.info("Enter customer name: ");
-        String customerName = scanner.next();
+        String customerName = scannerService.receiveString("Enter customer name: ");
 
         Customer foundCustomer = findCustomer(customers, customerName);
 
@@ -51,14 +50,12 @@ public class VideoRentalService {
     }
 
     public void returnVideo(List<Customer> customers) {
-        logger.info("Enter customer name: ");
-        String customerName = scanner.next();
+        String customerName = scannerService.receiveString("Enter customer name: ");
 
         Customer foundCustomer = findCustomer(customers, customerName);
         if (foundCustomer == null) return;
 
-        logger.info("Enter video title to return: ");
-        String videoTitle = scanner.next();
+        String videoTitle = scannerService.receiveString("Enter video title to return: ");
 
         List<Rental> customerRentals = foundCustomer.getRentals();
         for (Rental rental : customerRentals) {
@@ -109,8 +106,7 @@ public class VideoRentalService {
     }
 
     public void getCustomerReport(List<Customer> customers) {
-        logger.info("Enter customer name: ");
-        String customerName = scanner.next();
+        String customerName = scannerService.receiveString("Enter customer name: ");
 
         Customer foundCustomer = findCustomer(customers, customerName);
 
@@ -123,15 +119,13 @@ public class VideoRentalService {
     }
 
     public void rentVideo(List<Customer> customers, List<Video> videos) {
-        logger.info("Enter customer name: ");
-        String customerName = scanner.next();
+        String customerName = scannerService.receiveString("Enter customer name: ");
 
         Customer foundCustomer = findCustomer(customers, customerName);
 
         if (foundCustomer == null) return;
 
-        logger.info("Enter video title to rent: ");
-        String videoTitle = scanner.next();
+        String videoTitle = scannerService.receiveString("Enter video title to rent: ");
 
         Video foundVideo = null;
         for (Video video : videos) {
@@ -152,21 +146,16 @@ public class VideoRentalService {
     }
 
     public void registerCustomer(List<Customer> customers) {
-        logger.info("Enter customer name: ");
-        String name = scanner.next();
+        String name = scannerService.receiveString("Enter customer name: ");
         Customer customer = new Customer(name);
         customers.add(customer);
     }
 
     public void registerVideo(List<Video> videos) {
-        logger.info("Enter video title to register: ");
-        String title = scanner.next();
+        String title = scannerService.receiveString("Enter video title to register: ");
+        int videoType = scannerService.receiveInteger("Enter video type( 1 for VHD, 2 for CD, 3 for DVD ):");
 
-        logger.info("Enter video type( 1 for VHD, 2 for CD, 3 for DVD ):");
-        int videoType = scanner.nextInt();
-
-        logger.info("Enter price code( 1 for Regular, 2 for New Release ):");
-        int priceCode = scanner.nextInt();
+        int priceCode = scannerService.receiveInteger("Enter price code( 1 for Regular, 2 for New Release ):");
 
         Date registeredDate = new Date();
         Video video = new Video(title, videoType, priceCode, registeredDate);
@@ -184,9 +173,7 @@ public class VideoRentalService {
         logger.info("\t 6. Return video");
         logger.info("\t 7. Show customer report");
         logger.info("\t 8. Show customer and clear rentals");
-
-        int command = scanner.nextInt();
-
+        int command = scannerService.receiveInteger();
         return command;
 
     }

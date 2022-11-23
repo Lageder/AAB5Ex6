@@ -11,10 +11,10 @@ import java.util.Scanner;
 // This is Presentation layer..kind of??
 public class VRUI {
 	private final VideoRentalService videoRentalService = new VideoRentalService();
+	private List<Customer> customers = new ArrayList<Customer>();
+	private List<Video> videos = new ArrayList<Video>();
 
-	private List<Customer> customers = new ArrayList<Customer>() ;
 
-	private List<Video> videos = new ArrayList<Video>() ;
 
 	public static void main(String[] args) {
 		VRUI ui = new VRUI();
